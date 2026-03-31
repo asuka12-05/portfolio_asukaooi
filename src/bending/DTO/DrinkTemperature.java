@@ -1,7 +1,7 @@
 /**
  * 
  */
-package bending;
+package bending.DTO;
 
 /**
  * ドリンクの温度状態

@@ -1,4 +1,4 @@
-package bending;
+package bending.DTO;
 
 public class dto {
 	/** ドリンクの名前 */

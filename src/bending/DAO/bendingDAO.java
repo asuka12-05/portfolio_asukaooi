@@ -1,4 +1,4 @@
-package bending;
+package bending.DAO;
 
 public class bendingDAO {
 
