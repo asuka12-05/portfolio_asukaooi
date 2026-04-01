@@ -1,10 +1,12 @@
 package bending.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
 
 import bending.DTO.DrinkDto;
+import bending.DTO.DrinkTemperature;
 import bending.DTO.SalesDto;
 
 public class bendingDAO {
@@ -15,8 +17,32 @@ public class bendingDAO {
 	 * @return
 	 */
 	public List<DrinkDto> findAll(HttpSession session) {
-		return null;
+		List<DrinkDto> drinkList = (List<DrinkDto>) session.getAttribute("drinkList");
 		
+		if (drinkList == null) {
+			drinkList = createDefaultDrinks();
+			session.setAttribute("drinkList", drinkList);
+		}
+		return drinkList;
+		
+	}
+	
+	/**
+	 * 初期商品リスト取得
+	 * @return
+	 */
+	private List<DrinkDto> createDefaultDrinks() {
+		List<DrinkDto> defaultList = new ArrayList<>();
+		
+		DrinkDto d1 = new DrinkDto();
+		d1.setID(1);
+		d1.setName("みず");
+		d1.setPrice(120);
+		d1.setInventory(5);
+		d1.setTemperature(DrinkTemperature.COLD);
+		defaultList.add(d1);
+		
+		return defaultList;
 	}
 	
 	/**
@@ -26,6 +52,13 @@ public class bendingDAO {
 	 * @return
 	 */
 	public DrinkDto findById(HttpSession session, int id) {
+		List<DrinkDto> drinkList = findAll(session);
+		
+		for(DrinkDto drink : drinkList) {
+			if (drink.getID() == id) {
+				return drink;
+			}
+		}
 		return null;
 	}
 	
@@ -34,8 +67,8 @@ public class bendingDAO {
 	 * @param session
 	 * @param list
 	 */
-	public void saveAll(HttpSession session, List<DrinkDto> list) {
-		
+	public void saveAll(HttpSession session, List<DrinkDto> drinkList) {
+		session.setAttribute("drinkList", drinkList);
 	}
 	
 	/**

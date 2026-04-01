@@ -1,15 +1,23 @@
 package bending.DTO;
 
 public class DrinkDto {
+	/** ID */
+	private int ID;
 	/** ドリンクの名前 */
 	private String name;
-	/** 価格 */
+	/** 価格(円) */
 	private int price;
 	/** 在庫(本数) */
 	private int inventory;
 	/** ドリンクの温度状態 */
 	private DrinkTemperature temperature;
 	
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
 	public String getName() {
 		return name;
 	}
