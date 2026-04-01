@@ -1,6 +1,6 @@
 package bending.DTO;
 
-public class dto {
+public class DrinkDto {
 	/** ドリンクの名前 */
 	private String name;
 	/** 価格 */
