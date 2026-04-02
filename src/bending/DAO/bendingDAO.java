@@ -9,6 +9,9 @@ import bending.DTO.DrinkDto;
 import bending.DTO.DrinkTemperature;
 import bending.DTO.SalesDto;
 
+/**
+ * 自販機シミュレータの処理クラス
+ */
 public class bendingDAO {
 	
 	/**
@@ -17,6 +20,7 @@ public class bendingDAO {
 	 * @return
 	 */
 	public List<DrinkDto> findAll(HttpSession session) {
+		@SuppressWarnings("unchecked")
 		List<DrinkDto> drinkList = (List<DrinkDto>) session.getAttribute("drinkList");
 		
 		if (drinkList == null) {
@@ -42,6 +46,38 @@ public class bendingDAO {
 		d1.setTemperature(DrinkTemperature.COLD);
 		defaultList.add(d1);
 		
+		DrinkDto d2 = new DrinkDto();
+		d2.setID(2);
+		d2.setName("緑茶");
+		d2.setPrice(120);
+		d2.setInventory(5);
+		d2.setTemperature(DrinkTemperature.COLD);
+		defaultList.add(d2);
+		
+		DrinkDto d3 = new DrinkDto();
+		d3.setID(3);
+		d3.setName("スポーツドリンク");
+		d3.setPrice(150);
+		d3.setInventory(5);
+		d3.setTemperature(DrinkTemperature.COLD);
+		defaultList.add(d3);
+		
+		DrinkDto d4 = new DrinkDto();
+		d4.setID(4);
+		d4.setName("コーヒー");
+		d4.setPrice(160);
+		d4.setInventory(5);
+		d4.setTemperature(DrinkTemperature.HOT);
+		defaultList.add(d4);
+		
+		DrinkDto d5 = new DrinkDto();
+		d5.setID(5);
+		d5.setName("グレープソーダ");
+		d5.setPrice(160);
+		d5.setInventory(5);
+		d5.setTemperature(DrinkTemperature.COLD);
+		defaultList.add(d5);
+		
 		return defaultList;
 	}
 	
@@ -63,7 +99,7 @@ public class bendingDAO {
 	}
 	
 	/**
-	 * 商品リストをSessionに保存
+	 * 現在の商品リストをSessionに保存()
 	 * @param session
 	 * @param list
 	 */
@@ -72,16 +108,27 @@ public class bendingDAO {
 	}
 	
 	/**
-	 * 在庫を一つ減らす
+	 * 在庫を一つ減らす(ドリンクを購入する)
 	 * @param session
 	 * @param id
 	 */
-	public void decreaseInvebentory(HttpSession session, int id) {
-		
+	public void decreaseInventory(HttpSession session, int id) throws IllegalArgumentException, IllegalStateException  {
+		// 商品を取得
+		DrinkDto drink = findById(session, id);
+
+		if (drink == null) {
+	        throw new IllegalArgumentException("存在しません");
+	    }
+
+	    if (drink.getInventory() <= 0) {
+	        throw new IllegalStateException("売り切れ");
+	    }
+
+	    drink.setInventory(drink.getInventory() - 1);
 	}
 	
 	/**
-	 * 在庫を補充する
+	 * 在庫を補充する(継ぎ足す)
 	 * @param session
 	 * @param id
 	 * @param count
