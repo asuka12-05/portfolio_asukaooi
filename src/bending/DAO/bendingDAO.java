@@ -125,16 +125,30 @@ public class bendingDAO {
 	    }
 
 	    drink.setInventory(drink.getInventory() - 1);
+	    saveAll(session, findAll(session));
 	}
 	
 	/**
 	 * 在庫を補充する(継ぎ足す)
-	 * @param session
-	 * @param id
-	 * @param count
+	 * @param session	取得済セッション
+	 * @param id		商品ID
+	 * @param count		補充本数
 	 */
 	public void replenish(HttpSession session, int id, int count) {
-		
+		// 商品を取得
+	    DrinkDto drink = findById(session, id);
+	    // nullチェック,念のため
+	    if (drink == null) {
+	    	throw new IllegalArgumentException("存在しません");
+	    }
+	    // countのチェック,念のため
+	    if (count <= 0) {
+	        throw new IllegalArgumentException("補充本数は1以上を指定してください");
+	    }
+	    // 在庫にcountを足す
+	    drink.setInventory(drink.getInventory() + count);
+	    // Sessionに保存
+	    saveAll(session, findAll(session));
 	}
 	
 	/**
