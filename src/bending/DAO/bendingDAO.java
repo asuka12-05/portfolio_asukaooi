@@ -15,7 +15,7 @@ import bending.DTO.SalesDto;
 public class bendingDAO {
 	
 	/**
-	 * 商品リスト取得
+	 * 商品リスト取得(全件検索)
 	 * @param session
 	 * @return
 	 */
@@ -23,6 +23,7 @@ public class bendingDAO {
 		@SuppressWarnings("unchecked")
 		List<DrinkDto> drinkList = (List<DrinkDto>) session.getAttribute("drinkList");
 		
+		// 初回開始時のみ初期商品を並べる
 		if (drinkList == null) {
 			drinkList = createDefaultDrinks();
 			session.setAttribute("drinkList", drinkList);
@@ -32,57 +33,70 @@ public class bendingDAO {
 	}
 	
 	/**
-	 * 初期商品リスト取得
-	 * @return
+	 * 初期商品一覧取得
+	 * @return	初期商品一覧
 	 */
 	private List<DrinkDto> createDefaultDrinks() {
+		// 空のリストを取得
 		List<DrinkDto> defaultList = new ArrayList<>();
 		
+		// 初期商品1を設定
 		DrinkDto d1 = new DrinkDto();
+		// 初期商品のIDは設定済、以降オートインクリメント
 		d1.setID(1);
 		d1.setName("みず");
 		d1.setPrice(120);
 		d1.setInventory(5);
 		d1.setTemperature(DrinkTemperature.COLD);
+		// リストに格納
 		defaultList.add(d1);
 		
+		// 初期商品2を設定
 		DrinkDto d2 = new DrinkDto();
 		d2.setID(2);
 		d2.setName("緑茶");
 		d2.setPrice(120);
 		d2.setInventory(5);
 		d2.setTemperature(DrinkTemperature.COLD);
+		// リストに格納
 		defaultList.add(d2);
 		
+		// 初期商品3を設定
 		DrinkDto d3 = new DrinkDto();
 		d3.setID(3);
 		d3.setName("スポーツドリンク");
 		d3.setPrice(150);
 		d3.setInventory(5);
 		d3.setTemperature(DrinkTemperature.COLD);
+		// リストに格納
 		defaultList.add(d3);
 		
+		// 初期商品4を設定
 		DrinkDto d4 = new DrinkDto();
 		d4.setID(4);
 		d4.setName("コーヒー");
 		d4.setPrice(160);
 		d4.setInventory(5);
 		d4.setTemperature(DrinkTemperature.HOT);
+		// リストに格納
 		defaultList.add(d4);
 		
+		// 初期商品5を設定
 		DrinkDto d5 = new DrinkDto();
 		d5.setID(5);
 		d5.setName("グレープソーダ");
 		d5.setPrice(160);
 		d5.setInventory(5);
 		d5.setTemperature(DrinkTemperature.COLD);
+		// リストに格納
 		defaultList.add(d5);
 		
+		// 初期商品を全て設定したリストを返却
 		return defaultList;
 	}
 	
 	/**
-	 * 商品一件獲得
+	 * 商品をIDで検索(購入、補充、入れ替え)
 	 * @param session
 	 * @param id
 	 * @return
@@ -90,11 +104,15 @@ public class bendingDAO {
 	public DrinkDto findById(HttpSession session, int id) {
 		List<DrinkDto> drinkList = findAll(session);
 		
+		// 並んでいる商品の中に
 		for(DrinkDto drink : drinkList) {
+			// 処理したい商品があった場合
 			if (drink.getID() == id) {
+				// その商品を渡す(返却)
 				return drink;
 			}
 		}
+		// 対象商品はない
 		return null;
 	}
 	
@@ -153,12 +171,19 @@ public class bendingDAO {
 	
 	/**
 	 * 商品を入れ替える(売り切れ商品のみ)
-	 * @param session
-	 * @param id
+	 * @param session	取得済セッション
+	 * @param id		商品ID
 	 * @param newDrink
 	 */
 	public void replace(HttpSession session, int id, DrinkDto newDrink) {
-		
+		// 商品を取得
+	    DrinkDto drink = findById(session, id);
+	    if (drink.getInventory() == 0) {
+	    // 在庫にcountを足す
+	    drink.setInventory(drink.getInventory() + count);
+	    // Sessionに保存
+	    saveAll(session, findAll(session));	
+	    }
 	}
 	
 	/**
@@ -218,6 +243,10 @@ public class bendingDAO {
 	 */
 	public int getInsertedMoney(HttpSession session, int totalSales) {
 		return totalSales;
+		
+	}
+	
+	public void addMoney() {
 		
 	}
 }
