@@ -91,6 +91,16 @@ public class bendingDAO {
 		// リストに格納
 		defaultList.add(d5);
 		
+		// 初期商品6を設定
+		DrinkDto d6 = new DrinkDto();
+		d6.setID(6);
+		d6.setName("スポーツドリンク");
+		d6.setPrice(150);
+		d6.setInventory(5);
+		d6.setTemperature(DrinkTemperature.COLD);
+		// リストに格納
+		defaultList.add(d6);
+		
 		// 初期商品を全て設定したリストを返却
 		return defaultList;
 	}
@@ -175,25 +185,52 @@ public class bendingDAO {
 	 * @param id		商品ID
 	 * @param newDrink
 	 */
-	public void replace(HttpSession session, int id, DrinkDto newDrink) {
+	public void replace(HttpSession session, int id, DrinkDto newDrink) throws Exception {
 		// 商品を取得
 	    DrinkDto drink = findById(session, id);
+	    // null確認
+	    if (drink == null) {
+	        throw new IllegalArgumentException("存在しません");
+	    }
+	    // 在庫が0か確認
 	    if (drink.getInventory() == 0) {
-	    // 在庫にcountを足す
-	    drink.setInventory(drink.getInventory() + count);
-	    // Sessionに保存
-	    saveAll(session, findAll(session));	
+	    	// セッションから商品リストを取得
+	    	List<DrinkDto> list = findAll(session);
+	    	// 全商品確認
+	    	for (int i = 0; i < list.size(); i++) {
+	    		// 対象の売り切れ商品を検索
+	    	    if (list.get(i).getID() == id) {
+	    	    	// 入れ替える新商品で上書き
+	    	        list.set(i, newDrink);
+	    	        break;
+	    	    }
+	    	}
+	    	// Sessionに保存
+	    	saveAll(session, list);	
+	    } else {
+	    	 throw new IllegalStateException("売り切れ時のみ入れ替え可能");
 	    }
 	}
 	
 	/**
 	 * カスタム商品リスト取得
-	 * @param session
-	 * @param drink
-	 * @return
+	 * @param session	取得したセッション
+	 * @return			カスタム商品リスト
 	 */
-	public List<DrinkDto> findCustomAll(HttpSession session, DrinkDto drink) {
-		return null;
+	public List<DrinkDto> findCustomAll(HttpSession session) {
+		// セッションから "customDrinkList" という名前で取得
+		@SuppressWarnings("unchecked")
+		List<DrinkDto> customDrinkList = (List<DrinkDto>) session.getAttribute("customDrinkList");
+		// nullか確認
+		if (customDrinkList == null) {
+			// 新規でカスタム商品のリストを作成
+			List<DrinkDto> list = new ArrayList<>();
+			// 空のリストをセッションに保存
+			session.setAttribute("customDrinkList", list);
+			customDrinkList = list;
+		}
+		// リストを返却
+		return customDrinkList;
 		
 	}
 	
@@ -203,7 +240,18 @@ public class bendingDAO {
 	 * @param drink
 	 */
 	public void addCustom(HttpSession session, DrinkDto drink) {
-		
+		// カスタム商品リストを取得
+	    List<DrinkDto> list = findCustomAll(session);
+
+	    // 現在の最大IDを探す。ない場合は0とする
+	    int maxId = list.stream().mapToInt(DrinkDto::getID).max().orElse(0);
+	    // +1した新しいIDを設定
+	    drink.setID(maxId + 1);
+	    // カスタム商品リストに加える
+	    list.add(drink);
+	    // セッションに保存
+	    session.setAttribute("customDrinkList", list);
+
 	}
 	
 	// 売上関連
@@ -241,12 +289,33 @@ public class bendingDAO {
 	 * @param totalSales
 	 * @return
 	 */
-	public int getInsertedMoney(HttpSession session, int totalSales) {
-		return totalSales;
+	public int getInsertedMoney(HttpSession session) {
+		return ;
 		
 	}
 	
-	public void addMoney() {
+	/**
+	 * 投入金額を加算
+	 * @param session
+	 * @param amount
+	 */
+	public void addMoney(HttpSession session, int amount) {
 		
+	}
+	
+	/**
+	 * 投入金額リセット
+	 * @param session
+	 */
+	public void resetMoney(HttpSession session) {
+		
+	}
+	
+	/**
+	 * 全状態をデフォルトに戻す(初期化)
+	 * @param session
+	 */
+	public void initialize(HttpSession session) {
+
 	}
 }
