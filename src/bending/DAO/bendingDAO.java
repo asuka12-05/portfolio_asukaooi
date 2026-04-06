@@ -33,7 +33,7 @@ public class bendingDAO {
 	}
 	
 	/**
-	 * 初期商品一覧取得
+	 * 初期商品(6種)一覧取得
 	 * @return	初期商品一覧
 	 */
 	private List<DrinkDto> createDefaultDrinks() {
