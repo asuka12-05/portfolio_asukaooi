@@ -12,5 +12,9 @@ public class Const {
 	public static final String MSG_NO_MONEY = "金額が不足しています";
 	public static final String MSG_ZERO_SALES = "売上がありません";
 	public static final String MSG_CUSTOM_LIMIT = "カスタム商品は5件が上限です";
+	
+	// ドリンク名
+	public static final String DRINK = "カスタム商品は5件が上限です";
+	
 
 }
