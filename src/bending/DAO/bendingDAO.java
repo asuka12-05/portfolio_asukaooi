@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpSession;
 import bending.DTO.DrinkDto;
 import bending.DTO.DrinkTemperature;
 import bending.DTO.SalesDto;
+import bending.tool.Const;
 
 /**
  * 自販機シミュレータの処理クラス
@@ -44,7 +45,7 @@ public class bendingDAO {
 		DrinkDto d1 = new DrinkDto();
 		// 初期商品のIDは設定済、以降オートインクリメント
 		d1.setID(1);
-		d1.setName("みず");
+		d1.setName(Const.DRINK_WATER);
 		d1.setPrice(120);
 		d1.setInventory(5);
 		d1.setTemperature(DrinkTemperature.COLD);
@@ -54,7 +55,7 @@ public class bendingDAO {
 		// 初期商品2を設定
 		DrinkDto d2 = new DrinkDto();
 		d2.setID(2);
-		d2.setName("緑茶");
+		d2.setName(Const.DRINK_GREEN_TEA);
 		d2.setPrice(120);
 		d2.setInventory(5);
 		d2.setTemperature(DrinkTemperature.COLD);
@@ -64,7 +65,7 @@ public class bendingDAO {
 		// 初期商品3を設定
 		DrinkDto d3 = new DrinkDto();
 		d3.setID(3);
-		d3.setName("スポーツドリンク");
+		d3.setName(Const.DRINK_SPORT);
 		d3.setPrice(150);
 		d3.setInventory(5);
 		d3.setTemperature(DrinkTemperature.COLD);
@@ -74,7 +75,7 @@ public class bendingDAO {
 		// 初期商品4を設定
 		DrinkDto d4 = new DrinkDto();
 		d4.setID(4);
-		d4.setName("コーヒー");
+		d4.setName(Const.DRINK_COFFEE_HOT);
 		d4.setPrice(160);
 		d4.setInventory(5);
 		d4.setTemperature(DrinkTemperature.HOT);
@@ -84,7 +85,7 @@ public class bendingDAO {
 		// 初期商品5を設定
 		DrinkDto d5 = new DrinkDto();
 		d5.setID(5);
-		d5.setName("グレープソーダ");
+		d5.setName(Const.DRINK_GREAP_SODA);
 		d5.setPrice(160);
 		d5.setInventory(5);
 		d5.setTemperature(DrinkTemperature.COLD);
@@ -94,8 +95,8 @@ public class bendingDAO {
 		// 初期商品6を設定
 		DrinkDto d6 = new DrinkDto();
 		d6.setID(6);
-		d6.setName("スポーツドリンク");
-		d6.setPrice(150);
+		d6.setName(Const.DRINK_COFFEE_ICE);
+		d6.setPrice(160);
 		d6.setInventory(5);
 		d6.setTemperature(DrinkTemperature.COLD);
 		// リストに格納

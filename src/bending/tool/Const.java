@@ -14,7 +14,12 @@ public class Const {
 	public static final String MSG_CUSTOM_LIMIT = "カスタム商品は5件が上限です";
 	
 	// ドリンク名
-	public static final String DRINK = "カスタム商品は5件が上限です";
+	public static final String DRINK_WATER = "みず";
+	public static final String DRINK_GREEN_TEA = "緑茶";
+	public static final String DRINK_SPORT = "スポーツドリンク";
+	public static final String DRINK_COFFEE_HOT = "ホットコーヒー";
+	public static final String DRINK_GREAP_SODA = "グレープソーダ";
+	public static final String DRINK_COFFEE_ICE = "アイスコーヒー";
 	
 
 }
