@@ -22,12 +22,12 @@ public class bendingDAO {
 	 */
 	public List<DrinkDto> findAll(HttpSession session) {
 		@SuppressWarnings("unchecked")
-		List<DrinkDto> drinkList = (List<DrinkDto>) session.getAttribute("drinkList");
+		List<DrinkDto> drinkList = (List<DrinkDto>) session.getAttribute(Const.ATTR_DRINK_LIST);
 		
 		// 初回開始時のみ初期商品を並べる
 		if (drinkList == null) {
 			drinkList = createDefaultDrinks();
-			session.setAttribute("drinkList", drinkList);
+			session.setAttribute(Const.ATTR_DRINK_LIST, drinkList);
 		}
 		return drinkList;
 		
@@ -133,7 +133,7 @@ public class bendingDAO {
 	 * @param list
 	 */
 	public void saveAll(HttpSession session, List<DrinkDto> drinkList) {
-		session.setAttribute("drinkList", drinkList);
+		session.setAttribute(Const.ATTR_DRINK_LIST, drinkList);
 	}
 	
 	/**
@@ -146,11 +146,11 @@ public class bendingDAO {
 		DrinkDto drink = findById(session, id);
 
 		if (drink == null) {
-	        throw new IllegalArgumentException("存在しません");
+	        throw new IllegalArgumentException(Const.MSG_NOT_FOUND);
 	    }
 
 	    if (drink.getInventory() <= 0) {
-	        throw new IllegalStateException("売り切れ");
+	        throw new IllegalStateException(Const.MSG_SOLD_OUT);
 	    }
 
 	    drink.setInventory(drink.getInventory() - 1);
@@ -168,11 +168,11 @@ public class bendingDAO {
 	    DrinkDto drink = findById(session, id);
 	    // nullチェック,念のため
 	    if (drink == null) {
-	    	throw new IllegalArgumentException("存在しません");
+	    	throw new IllegalArgumentException(Const.MSG_NOT_FOUND);
 	    }
 	    // countのチェック,念のため
 	    if (count <= 0) {
-	        throw new IllegalArgumentException("補充本数は1以上を指定してください");
+	        throw new IllegalArgumentException(Const.MSG_NO_STOCK_COUNT);
 	    }
 	    // 在庫にcountを足す
 	    drink.setInventory(drink.getInventory() + count);
@@ -191,7 +191,7 @@ public class bendingDAO {
 	    DrinkDto drink = findById(session, id);
 	    // null確認
 	    if (drink == null) {
-	        throw new IllegalArgumentException("存在しません");
+	        throw new IllegalArgumentException(Const.MSG_NOT_FOUND);
 	    }
 	    // 在庫が0か確認
 	    if (drink.getInventory() == 0) {
@@ -209,25 +209,25 @@ public class bendingDAO {
 	    	// Sessionに保存
 	    	saveAll(session, list);	
 	    } else {
-	    	 throw new IllegalStateException("売り切れ時のみ入れ替え可能");
+	    	 throw new IllegalStateException(Const.MSG_NOT_SOLDOUT);
 	    }
 	}
 	
 	/**
 	 * カスタム商品リスト取得
-	 * @param session	取得したセッション
+	 * @param session	取得済セッション
 	 * @return			カスタム商品リスト
 	 */
 	public List<DrinkDto> findCustomAll(HttpSession session) {
 		// セッションから "customDrinkList" という名前で取得
 		@SuppressWarnings("unchecked")
-		List<DrinkDto> customDrinkList = (List<DrinkDto>) session.getAttribute("customDrinkList");
+		List<DrinkDto> customDrinkList = (List<DrinkDto>) session.getAttribute(Const.ATTR_CUSTOM_DRINK_LIST);
 		// nullか確認
 		if (customDrinkList == null) {
 			// 新規でカスタム商品のリストを作成
 			List<DrinkDto> list = new ArrayList<>();
 			// 空のリストをセッションに保存
-			session.setAttribute("customDrinkList", list);
+			session.setAttribute(Const.ATTR_CUSTOM_DRINK_LIST, list);
 			customDrinkList = list;
 		}
 		// リストを返却
@@ -237,8 +237,8 @@ public class bendingDAO {
 	
 	/**
 	 * カスタム商品を追加
-	 * @param session
-	 * @param drink
+	 * @param session	取得済セッション
+	 * @param drink		新しく追加する商品
 	 */
 	public void addCustom(HttpSession session, DrinkDto drink) {
 		// カスタム商品リストを取得
@@ -251,47 +251,77 @@ public class bendingDAO {
 	    // カスタム商品リストに加える
 	    list.add(drink);
 	    // セッションに保存
-	    session.setAttribute("customDrinkList", list);
+	    session.setAttribute(Const.ATTR_CUSTOM_DRINK_LIST, list);
 
 	}
 	
 	// 売上関連
 	/**
 	 * 売上取得
-	 * @param session
-	 * @return
+	 * @param session	取得済セッション
+	 * @return			売上
 	 */
 	public SalesDto getSales(HttpSession session) {
-		return null;
+		// セッションから売上の取得
+		SalesDto sales = (SalesDto) session.getAttribute(Const.ATTR_SALES);
+		
+		// 初回アクセス時
+	    if (sales == null) {
+	    	// SalesDtoを新規作成
+	        sales = new SalesDto();
+	        // セッションに保存
+	        session.setAttribute(Const.ATTR_SALES, sales);
+	    }
+		return sales;
 		
 	}
 	
 	/**
 	 * 売上に加算
-	 * @param session
-	 * @param price
+	 * @param session	取得済みセッション
+	 * @param price		今回購入したドリンクの金額
 	 */
 	public void addSales(HttpSession session, int price) {
+		SalesDto sales = getSales(session);
 		
+		sales.setTotalSales(price + sales.getTotalSales());
+		
+		session.setAttribute(Const.ATTR_SALES, sales);
 	}
 	
 	/**
 	 * 売上をリセット(回収)
-	 * @param session
+	 * @param session	取得済セッション
 	 */
 	public void resetSales(HttpSession session) {
+		// セッションから現在の売上の取得
+		SalesDto sales = getSales(session);
 		
+		// 売上を0にする
+		sales.setTotalSales(0);
+		// 売上本数も0にする
+		sales.setTotalCount(0);
+		
+		// セッションに保存
+		session.setAttribute(Const.ATTR_SALES, sales);
 	}
 	
 	// 投入金額について
 	/**
 	 * 投入金額獲得
 	 * @param session
-	 * @param totalSales
 	 * @return
 	 */
 	public int getInsertedMoney(HttpSession session) {
-		return ;
+		Integer amount = (Integer) session.getAttribute(Const.ATTR_AMOUNT);
+		
+		// 初回アクセス時
+	    if (amount == null) {
+	    	amount = 0;
+	        // セッションに保存
+	        session.setAttribute(Const.ATTR_AMOUNT, amount);
+	    }
+		return amount;
 		
 	}
 	
