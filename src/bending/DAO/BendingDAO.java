@@ -13,7 +13,7 @@ import bending.tool.Const;
 /**
  * 自販機シミュレータの処理クラス
  */
-public class bendingDAO {
+public class BendingDAO {
 	
 	/**
 	 * 商品リスト取得(全件検索)
@@ -309,8 +309,8 @@ public class bendingDAO {
 	// 投入金額について
 	/**
 	 * 投入金額獲得
-	 * @param session
-	 * @return
+	 * @param session	取得済セッション
+	 * @return			投入金額
 	 */
 	public int getInsertedMoney(HttpSession session) {
 		Integer amount = (Integer) session.getAttribute(Const.ATTR_AMOUNT);
@@ -331,7 +331,11 @@ public class bendingDAO {
 	 * @param amount
 	 */
 	public void addMoney(HttpSession session, int amount) {
+		int current = getInsertedMoney(session);
 		
+		int newAmount = current + amount;
+		
+		session.setAttribute(Const.ATTR_AMOUNT, newAmount);
 	}
 	
 	/**
@@ -339,7 +343,7 @@ public class bendingDAO {
 	 * @param session
 	 */
 	public void resetMoney(HttpSession session) {
-		
+		session.setAttribute(Const.ATTR_AMOUNT, 0);
 	}
 	
 	/**
@@ -347,6 +351,13 @@ public class bendingDAO {
 	 * @param session
 	 */
 	public void initialize(HttpSession session) {
-
+		 // 1. 商品リストをデフォルトに戻す
+		session.setAttribute(Const.ATTR_DRINK_LIST, createDefaultDrinks());
+	    // 2. カスタム商品リストを空にする
+		session.setAttribute(Const.ATTR_CUSTOM_DRINK_LIST, new ArrayList<>());
+	    // 3. 売上を0にする
+		resetSales(session);
+	    // 4. 投入金額を0にする
+		resetMoney(session);
 	}
 }
