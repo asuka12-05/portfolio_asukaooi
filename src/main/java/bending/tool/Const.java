@@ -15,6 +15,8 @@ public class Const {
 	public static final String MSG_NO_STOCK_COUNT = "補充本数は1以上を指定してください";
 	public static final String MSG_NOT_FOUND = "存在しません";
 	public static final String MSG_NOT_SOLDOUT = "売り切れ時のみ入れ替え可能";
+	public static final String MSG_NO_CHANGE = "おつりはありません";
+	public static final String MSG_NO_NAME = "商品名が未入力です";
 	
 	// ドリンク名
 	public static final String DRINK_WATER = "みず";
@@ -29,6 +31,12 @@ public class Const {
 	public static final String ATTR_CUSTOM_DRINK_LIST = "customDrinkList";
 	public static final String ATTR_SALES = "sales";
 	public static final String ATTR_AMOUNT = "amoumt";
+	
+	// リクエストから取得
+	public static final String PARAM_ACTION = "action";
+	
+	public static final String REGEX_BLANK_FIRST = null;
+	public static final String REGEX_BLANK_END = null;
 	
 
 }

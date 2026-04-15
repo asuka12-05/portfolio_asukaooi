@@ -22,8 +22,8 @@ public class CheckTool {
 	    if (input == null) {
 	        return null;
 	    }
-	    return input.replaceFirst(Constants.REGAX_BLANK_FIRST, "")
-	                .replaceFirst(Constants.REGAX_BLANK_END, "");
+	    return input.replaceFirst(Const.REGEX_BLANK_FIRST, "")
+	                .replaceFirst(Const.REGEX_BLANK_END, "");
 	}
 
 }
