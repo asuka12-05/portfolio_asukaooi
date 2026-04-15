@@ -125,7 +125,7 @@ public class AttendanceService {
         List<WeeklyAttendance> records = attendanceDao.findByWeek(weekStart, weekEnd);
 
         System.out.println();
-        System.out.println("╔" +repeat("═", 90) + "╗");
+       // System.out.println("╔" +repeat("═", 90) + "╗");
         System.out.printf("║  週次勤怠管理  %s ～ %s%s║%n",
             weekStart, weekEnd, " ".repeat(90 - 26 - weekStart.toString().length() - weekEnd.toString().length()));
         System.out.println("╠" + "═".repeat(90) + "╣");

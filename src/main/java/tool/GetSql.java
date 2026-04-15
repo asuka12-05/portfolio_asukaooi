@@ -1,4 +1,4 @@
-package lib;
+package tool;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -32,7 +32,7 @@ public class GetSql {
             stReturn = (String) properties.get(key);
         } catch (IOException e) {
             // ファイル読み込みに失敗
-			lib.KadaiUtil.logOutPut(String.format("ファイルの読み込みに失敗しました。ファイル名:%s", SQL_PROPERTY));
+			KadaiUtil.logOutPut(String.format("ファイルの読み込みに失敗しました。ファイル名:%s", SQL_PROPERTY));
 			throw e;
         }
         // SQL文を戻す

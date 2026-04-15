@@ -1,14 +1,20 @@
 package com.heatbreak.dao;
 
-import com.heatbreak.config.AppConfig;
-import com.heatbreak.db.SqlLoader;
-import lib.MySQLConnection;
-import com.heatbreak.model.WeeklyAttendance;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.heatbreak.config.AppConfig;
+import com.heatbreak.db.SqlLoader;
+import com.heatbreak.model.WeeklyAttendance;
+
+import tool.MySQLConnection;
 
 public class WeeklyAttendanceDao {
 
