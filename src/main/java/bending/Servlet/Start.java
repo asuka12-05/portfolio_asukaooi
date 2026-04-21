@@ -2,7 +2,6 @@ package bending.Servlet;
 
 import java.io.IOException;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,7 +23,7 @@ public class Start extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/start.jsp")
+		request.getRequestDispatcher("/WEB-INF/jsp/start.jsp")
         .forward(request, response);
 	}
 
