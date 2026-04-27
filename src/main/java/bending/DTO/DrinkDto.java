@@ -1,4 +1,4 @@
-package main.java.bending.DTO;
+package bending.DTO;
 
 public class DrinkDto {
 	/** ID */

@@ -77,4 +77,12 @@ public class ConsumerService {
 		// 全商品在庫0だったのでtrue返却
 		return true;
 	}
+	
+	public void insertMoney(HttpSession session, int amount) {
+		int current = dao.getInsertedMoney(session);
+		if (current + amount > 1000) {
+			throw new IllegalStateException(Const.MSG_OVER_LIMIT);
+		}
+		dao.addMoney(session, amount);
+	} 
 }
