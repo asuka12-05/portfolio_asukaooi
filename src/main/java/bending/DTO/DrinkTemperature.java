@@ -1,7 +1,4 @@
-/**
- * 
- */
-package bending.DTO;
+package main.java.bending.DTO;
 
 /**
  * ドリンクの温度状態

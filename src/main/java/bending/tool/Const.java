@@ -17,6 +17,7 @@ public class Const {
 	public static final String MSG_NOT_SOLDOUT = "売り切れ時のみ入れ替え可能";
 	public static final String MSG_NO_CHANGE = "おつりはありません";
 	public static final String MSG_NO_NAME = "商品名が未入力です";
+	public static final String MSG_OVER_LIMIT = "1000円を超えて投入できません";
 	
 	// ドリンク名
 	public static final String DRINK_WATER = "みず";

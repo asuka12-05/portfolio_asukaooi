@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+  <display-name>book</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <servlet-name>hello3</servlet-name>
+    <servlet-class>c04.Hello3</servlet-class>
+    
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>hello3</servlet-name>
+    <url-pattern>/c04/hello3</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>param-servlet</servlet-name>
+    <servlet-class>c19.ParamServlet</servlet-class>
+    
+    <init-param>
+      <param-name>message</param-name>
+      <param-value>servlet-init-param</param-value>
+    </init-param>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>param-servlet</servlet-name>
+    <url-pattern>/c19/param-servlet</url-pattern>
+  </servlet-mapping>
+
+  <context-param>
+    <param-name>message</param-name>
+    <param-value>context-param</param-value>
+  </context-param>
+</web-app>

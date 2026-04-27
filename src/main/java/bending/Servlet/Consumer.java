@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import bending.Service.ConsumerService;
-import bending.tool.Const;
+import main.java.bending.Service.ConsumerService;
+import main.java.bending.tool.Const;
 
 /**
  * Servlet implementation class Start
@@ -45,6 +45,17 @@ public class Consumer extends HttpServlet {
 			} else if ("return".equals(action)) {
 				int change = conService.returnChange(session);
 				session.setAttribute("change", change);
+			// 投入額をサーバー側で管理
+			} else if ("insertMoney".equals(action)) {
+				int amount = Integer.parseInt(request.getParameter("amount"));
+				int current = dao.getInsertedMoney(session);
+				dao.addMoney(session, amount);
+				// 上限1000円チェック
+				if (current + amount > 1000) {
+					session.setAttribute("errorMsg", Const.MSG_OVER_LIMIT);
+				} else {
+					dao.addMoney(session, amount);
+				}
 			}
 		} catch (Exception e) {
 			session.setAttribute("errorMsg", e.getMessage());
