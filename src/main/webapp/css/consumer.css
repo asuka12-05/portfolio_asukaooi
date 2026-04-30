@@ -1,0 +1,116 @@
+@charset "UTF-8";
+/* ===== 消費者画面専用 ===== */
+
+/* コインエリア */
+.coin-area {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.coin-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #888;
+    background: linear-gradient(145deg, #f0c040, #c09000);
+    color: #5a3a00;
+    font-weight: bold;
+    font-size: 0.75rem;
+    transition: transform 0.1s;
+}
+
+.coin-btn:hover  { transform: scale(1.08); }
+.coin-btn:active { transform: scale(0.95); }
+
+/* アクションエリア */
+.action-area {
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+}
+
+/* 取り出し口 */
+.tray {
+    flex: 1;
+    border: 2px solid #999;
+    border-radius: 8px;
+    background: #fff;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.got-drink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.tray-img  { width: 60px; height: 60px; object-fit: contain; }
+.got-label { font-weight: bold; font-size: 1rem; color: #e06000; }
+
+/* 買う・おつりボタン */
+.buy-return-area {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.action-btn {
+    width: 120px;
+    height: 56px;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    border-radius: 6px;
+    border: 2px solid #333;
+    transition: background 0.15s;
+}
+
+.buy-btn    { background: #ffdddd; border-color: #cc2200; color: #cc2200; }
+.buy-btn:hover:not(:disabled)    { background: #ffbbbb; }
+.return-btn { background: #ddddff; border-color: #2244cc; color: #2244cc; }
+.return-btn:hover { background: #bbbbff; }
+
+/* ステータスウインドウ */
+.status-window {
+    border: 3px solid #e8c840;
+    border-radius: 8px;
+    background: #fffff0;
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    flex: 1;
+}
+
+.status-drink-img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.status-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.status-row {
+    font-size: 0.9rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+}
+
+.inserted-row {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #cc6600;
+    border-bottom: none;
+    margin-top: 8px;
+}

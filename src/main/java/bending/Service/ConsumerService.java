@@ -78,7 +78,13 @@ public class ConsumerService {
 		return true;
 	}
 	
+	/**
+	 * コイン投入(1000円上限チェック付)
+	 * @param session	取得済セッション
+	 * @param amount	追加投入金額
+	 */
 	public void insertMoney(HttpSession session, int amount) {
+		// 現時点の投入金額を獲得
 		int current = dao.getInsertedMoney(session);
 		if (current + amount > 1000) {
 			throw new IllegalStateException(Const.MSG_OVER_LIMIT);
