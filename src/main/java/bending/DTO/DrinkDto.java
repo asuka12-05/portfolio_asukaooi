@@ -1,5 +1,8 @@
 package bending.DTO;
 
+/**
+ * ドリンク：エンティティ
+ */
 public class DrinkDto {
 	/** ID */
 	private int ID;
