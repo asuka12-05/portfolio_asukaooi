@@ -242,16 +242,17 @@ public class BendingDAO {
 	 */
 	public void addCustom(HttpSession session, DrinkDto drink) {
 		// カスタム商品リストを取得
-	    List<DrinkDto> list = findCustomAll(session);
+		List<DrinkDto> customList = findCustomAll(session);
+	    List<DrinkDto> drinkList  = findAll(session);
 
 	    // 現在の最大IDを探す。ない場合は0とする
-	    int maxId = list.stream().mapToInt(DrinkDto::getID).max().orElse(0);
+	    int maxId = drinkList.stream().mapToInt(DrinkDto::getID).max().orElse(0);
 	    // +1した新しいIDを設定
 	    drink.setID(maxId + 1);
 	    // カスタム商品リストに加える
-	    list.add(drink);
+	    customList.add(drink);
 	    // セッションに保存
-	    session.setAttribute(Const.ATTR_CUSTOM_DRINK_LIST, list);
+	    session.setAttribute(Const.ATTR_CUSTOM_DRINK_LIST, customList);
 
 	}
 	

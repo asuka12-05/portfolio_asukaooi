@@ -10,8 +10,24 @@ let selectedId    = parseInt(document.getElementById("selectedId").value)    || 
 
 // ページ読み込み時にボタン状態を更新
 window.onload = function () {
-    updateBuyBtn();
+	updateDrinkButtons();
 };
+
+function updateDrinkButtons() {
+    const inserted = parseInt(document.getElementById("insertedMoney").value) || 0;
+    document.querySelectorAll(".drink-slot:not(.sold-out)").forEach(function (slot) {
+        const price = parseInt(slot.getAttribute("data-price"));
+        if (inserted >= price) {
+            slot.classList.remove("cannot-buy");
+            slot.style.pointerEvents = "";
+            slot.style.opacity = "";
+        } else {
+            slot.classList.add("cannot-buy");
+            slot.style.pointerEvents = "none";
+            slot.style.opacity = "0.5";
+        }
+    });
+}
 
 /**
  * コイン投入
@@ -19,31 +35,8 @@ window.onload = function () {
  * @param {number} amount - 投入金額
  */
 function insertCoin(amount) {
-    if (insertedMoney + amount > 1000) {
-        showMsg("1000円を超えて投入できません", true);
-        return;
-    }
-
-    // サーバーに投入金額を送信
-    const form = document.createElement("form");
-    form.method = "post";
-    form.action = document.querySelector("input[name='action']")
-                    ? "" : getContextPath() + "/bending/consumer";
-
-    const actionInput = document.createElement("input");
-    actionInput.type  = "hidden";
-    actionInput.name  = "action";
-    actionInput.value = "insertMoney";
-
-    const amountInput = document.createElement("input");
-    amountInput.type  = "hidden";
-    amountInput.name  = "amount";
-    amountInput.value = amount;
-
-    form.appendChild(actionInput);
-    form.appendChild(amountInput);
-    document.body.appendChild(form);
-    form.submit();
+	document.getElementById("coinAmount").value = amount;
+	document.getElementById("coinForm").submit();
 }
 
 /**

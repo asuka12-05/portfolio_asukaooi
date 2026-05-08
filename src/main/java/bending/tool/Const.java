@@ -31,7 +31,7 @@ public class Const {
 	public static final String ATTR_DRINK_LIST = "drinkList";
 	public static final String ATTR_CUSTOM_DRINK_LIST = "customDrinkList";
 	public static final String ATTR_SALES = "sales";
-	public static final String ATTR_AMOUNT = "amoumt";
+	public static final String ATTR_AMOUNT = "insertedMoney";
 	
 	// リクエストから取得
 	public static final String PARAM_ACTION = "action";

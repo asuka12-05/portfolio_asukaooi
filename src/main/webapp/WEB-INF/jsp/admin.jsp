@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ include file="/WEB-INF/jsp/header.jsp" %>
+<%@ include file="/header.jsp" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
 
 <c:set var="drinkList"      value="${sessionScope.drinkList}" />
 <c:set var="customDrinkList" value="${sessionScope.customDrinkList}" />
@@ -201,4 +202,5 @@
     </div>
 </div>
 
-<%@ include file="/WEB-INF/jsp/footer.jsp" %>
+<script src="${pageContext.request.contextPath}/js/admin.js"></script>
+<%@ include file="/footer.jsp" %>

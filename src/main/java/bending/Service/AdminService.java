@@ -67,10 +67,15 @@ public class AdminService {
 		if (sales.getTotalSales() == 0) {
 			throw new IllegalStateException(Const.MSG_ZERO_SALES);
 		}
+		// リセット前に金額を退避
+	    int collectedAmount = sales.getTotalSales();
 		// 売上リセット
 		dao.resetSales(session);
+		// 新しいDTOに回収金額を入れて返す
+	    SalesDto result = new SalesDto();
+	    result.setTotalSales(collectedAmount);
 		// 売上を返却
-		return sales;
+		return result;
 	}
 	
 	/**

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ include file="/WEB-INF/jsp/header.jsp" %>
+<%@ include file="/header.jsp" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/consumer.css">
 
 <%-- セッションから商品リストと各種状態を取得 --%>
 <c:set var="drinkList"     value="${sessionScope.drinkList}" />
@@ -52,9 +53,15 @@
             </c:forEach>
         </div>
 
+        <%-- コイン投入用hiddenフォーム --%>
+        <form action="${pageContext.request.contextPath}/bending/consumer"
+         method="post" id="coinForm">
+          <input type="hidden" name="action" value="insertMoney">
+          <input type="hidden" name="amount" id="coinAmount" value="0">
+        </form>
         <!-- コインボタン -->
         <div class="coin-area">
-            <c:forEach var="coin" items="10,50,100,500,1000">
+            <c:forEach var="coin" items="${[10,50,100,500,1000]}">
                 <button class="coin-btn" onclick="insertCoin(${coin})">${coin}円</button>
             </c:forEach>
         </div>
@@ -136,4 +143,5 @@
     </div>
 </div>
 
-<%@ include file="/WEB-INF/jsp/footer.jsp" %>
+<script src="${pageContext.request.contextPath}/js/consumer.js"></script>
+<%@ include file="/footer.jsp" %>

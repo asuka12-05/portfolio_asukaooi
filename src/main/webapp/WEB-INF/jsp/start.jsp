@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/header.jsp" %>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/start.css">
 <h1>自販機シミュレーター</h1>
 
 <%-- 消費者ボタン --%>
