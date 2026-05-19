@@ -59,7 +59,10 @@ public class Admin extends HttpServlet {
 			    customDrink.setName(request.getParameter("name"));
 			    customDrink.setPrice(Integer.parseInt(request.getParameter("price")));
 			    customDrink.setTemperature(DrinkTemperature.valueOf(request.getParameter("temperature")));
+			    // カスタム商品を渡してカスタムドリンクrストに保存
 			    adService.addCustomDrink(session, customDrink);
+			    int targetId = Integer.parseInt(request.getParameter("drinkId"));
+			    adService.replace(session, targetId, customDrink);
 				break;
 			case "collect":
 				SalesDto sales = adService.collectSales(session);

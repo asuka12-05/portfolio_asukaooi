@@ -42,6 +42,7 @@
                     <c:otherwise>
                         <%-- 購入可能 --%>
                         <div class="drink-slot ${drink.temperature == 'HOT' ? 'hot' : 'cold'} ${selectedId == drink.ID ? 'selected' : ''}"
+                             data-price=${drink.price}
                              onclick="selectDrink(${drink.ID}, '${drink.name}', ${drink.price}, ${drink.inventory}, '${drink.temperature}')">
                             <img src="${pageContext.request.contextPath}/images/${drink.ID}.png"
                                  alt="${drink.name}" class="drink-img">

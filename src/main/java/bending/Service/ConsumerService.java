@@ -91,4 +91,8 @@ public class ConsumerService {
 		}
 		dao.addMoney(session, amount);
 	} 
+	
+	public List<DrinkDto> getDrinkList(HttpSession session) {
+	    return dao.findAll(session);
+	}
 }
