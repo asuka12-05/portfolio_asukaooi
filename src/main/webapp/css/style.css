@@ -1,184 +1,4 @@
 @charset "UTF-8";
-/**
-/* 本文 */
-body {
-    background-color: #f7f7f7;
-    margin: 0;
-    padding: 0;
-	font-size: 20px;
-	line-height: 1.6;
-}
-
-.container {
-   max-width: 900px;
-   margin: 40px auto;
-   padding: 30px;
-   background: #ffffff;
-   border-radius: 8px;
-   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-h2 {
-	color: darkcyan;
-}
-
-p {
-    text-align: center;
-	color:rgb(0, 0, 160);
-}
-
-/* indexの題 */
-#title {
-	font-size: 28px;
-	font-weight: bold;
-	text-align: center;
-	margin-bottom: 20px;
-	color: #333;
-}
-
-/* エラー */
-.error {
-	color: red;
-}
-
-/* 位置揃え */
-.right {
-	text-align: right;
-}
-.left {
-	text-align: left;
-}
-.center {
-	text-align: center;
-}
-
-/* 検索 */
-.search {
-	text-align: center;
-	background-color: #f2f2f2;
-	padding: 12px 36px;
-	border-radius: 8px;
-	/* 親要素の中央に配置 */
-	display: block;
-	width: fit-content;
-	margin: 0 auto;
-	box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-.search p {
-    font-size: 20px;
-    color: #333;
-	margin-bottom: 8px;
-}
-.search input[type="text"] {
-    padding: 6px 10px;
-    border: 1px solid #bbb;
-    border-radius: 4px;
-    font-size: 14px;
-    width: 200px;
-	box-sizing: border-box;
-}
-.search input[type="submit"] {
-    background-color: steelblue;
-    color: white;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-	margin-left: 8px;
-}
-.search input[type="submit"]:hover {
-    background-color: #2a6496;
-}
-
-/* 変更ボタン */
-.changebutton {
-	background-color: yellowgreen; 
-	color: white;                  
-	padding: 4px 8px;             
-	border: none;                  
-	border-radius: 4px;            
-	cursor: pointer;
-}
-/* 非活性時 */
-.changebutton:disabled {
-    background-color: lightgray;
-    color: darkgray;
-}
-
-/* 削除ボタン */
-.deletebutton {
-	background-color: rgb(249, 98, 6); 
-	color: white;                  
-	padding: 4px 8px;             
-	border: none;                  
-	border-radius: 4px;            
-	cursor: pointer;
-}
-
-/* ラベル */
-label{
-	display: inline-block;
-	width: 140px;
-	margin: 5px 0 5px 10px;
-}
-
-/* 画像 */
-img {
-    width: 100px;
-    height: 80px;
-    object-fit: cover;
-}
-
-/* メニュー */
-#menu {
-	text-align: center;
-	background-color: #ffffff;
-	padding: 15px 0;
-	margin-bottom: 20px;
-	border-bottom: 1px solid #ddd;
-}
-/* メニューのリンク */
-#menu a {
-    display: inline-block;
-    margin: 0 15px;
-    padding: 8px 14px;
-    color: #003366;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 4px;
-    transition: 0.2s;
-}
-/* ホバー時（マウスを乗せた時） */
-#menu a:hover {
-    background-color: #e6f2ff;
-    color: #000;
-}
-
-/* 汎用ボタン */
-.button {
-	background-color: lightskyblue; 
-	color: white;                  
-	padding: 8px 16px;             
-	border: none;                  
-	border-radius: 4px;            
-	cursor: pointer;               
-}
-
-/* テーブル */
-table {
-    margin: 0 auto;
-    border-collapse: collapse;
-}
-th {
-    background-color: #f4d03f;
-    padding: 8px;
-}
-td {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-}
-*/
-
 /* ===== 共通スタイル ===== */
 
 * {
@@ -188,8 +8,8 @@ td {
 }
 
 body {
-    width: 100vw;
-    min-height: 100vh;
+    width: 100%;
+    min-height: 100%;
     font-family: 'Noto Sans JP', 'メイリオ', sans-serif;
     background-color: #f0f0f0;
 }
@@ -208,8 +28,8 @@ button:disabled {
 /* ===== 共通レイアウト（consumer・admin共通） ===== */
 .page-wrapper {
     display: flex;
-    width: 100vw;
-    min-height: 100vh;
+    width: 100%;
+    min-height: 100%;
     gap: 24px;
     padding: 24px;
 }

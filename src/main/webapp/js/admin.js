@@ -18,15 +18,15 @@ let imageIndex = 0;
 
 /**
  * 商品スロット選択
- * @param {number}  id        - 商品ID
- * @param {string}  name      - 商品名
- * @param {number}  price     - 価格
- * @param {number}  inventory - 在庫数
- * @param {string}  temp      - 温度
- * @param {boolean} isSoldOut - 売り切れか
+ * @param {number}  id			商品ID
+ * @param {string}  name		商品名
+ * @param {number}  price		価格
+ * @param {number}  inventory	在庫数
+ * @param {string}  temp		温度
+ * @param {boolean} isSoldOut	売り切れか
  */
-function selectSlot(id, name, price, inventory, temp, isSoldOut) {
-    currentSlot = { id, name, price, inventory, temp, isSoldOut };
+function selectSlot(id, name, price, inventory, temp, isSoldOut, imagePath) {
+    currentSlot = { id, name, price, inventory, temp, isSoldOut, imagePath };
 
     // スロットハイライト
     document.querySelectorAll(".drink-slot").forEach(function (s) {
@@ -35,25 +35,25 @@ function selectSlot(id, name, price, inventory, temp, isSoldOut) {
     event.currentTarget.classList.add("selected");
 
     // 詳細ウインドウ更新
-    showDetailView(id, name, price, inventory, temp);
+    showDetailView(id, name, price, inventory, temp, imagePath);
 
     // 補充ボタン活性（在庫が最大(5本)でなければ活性）
-    document.getElementById("replenishBtn").disabled = (inventory >= 5);
+    document.getElementById("jsi-replenishBtn").disabled = (inventory >= 5);
 
     // カスタムボタン活性（売り切れのみ）
-    document.getElementById("customBtn").disabled = !isSoldOut;
+    document.getElementById("jsi-customBtn").disabled = !isSoldOut;
 
     // 補充プルダウンを閉じる
-    document.getElementById("replenishDropdown").style.display = "none";
-    document.getElementById("customView").style.display        = "none";
-    document.getElementById("detailView").style.display        = "flex";
+    document.getElementById("jsi-replenishDropdown").style.display = "none";
+    document.getElementById("customView").style.display = "none";
+    document.getElementById("detailView").style.display = "flex";
 }
 
 /**
  * 詳細ビューに商品情報を表示
  */
-function showDetailView(id, name, price, inventory, temp) {
-    document.getElementById("detailImg").src          = CONTEXT_PATH + "/images/" + id + ".png";
+function showDetailView(id, name, price, inventory, temp, imagePath) {
+    document.getElementById("detailImg").src          = CONTEXT_PATH + "/images/" + imagePath;
     document.getElementById("detailName").textContent  = name;
     document.getElementById("detailStock").textContent = inventory;
     document.getElementById("detailPrice").textContent = price;
@@ -64,13 +64,13 @@ function showDetailView(id, name, price, inventory, temp) {
  * 補充プルダウンを開閉する
  */
 function toggleReplenish() {
-    const dropdown = document.getElementById("replenishDropdown");
+    const dropdown = document.getElementById("jsi-replenishDropdown");
     const isHidden = dropdown.style.display === "none";
 
     dropdown.style.display = isHidden ? "block" : "none";
 
     if (isHidden) {
-        document.getElementById("replenishDrinkId").value = currentSlot.id;
+        document.getElementById("jsi-replenishDrinkId").value = currentSlot.id;
         // カスタムビューは閉じる
         document.getElementById("customView").style.display = "none";
         document.getElementById("detailView").style.display = "flex";
@@ -85,7 +85,7 @@ function openCustom() {
     document.getElementById("customTargetId").value = currentSlot.id;
 
     // 補充プルダウンを閉じる
-    document.getElementById("replenishDropdown").style.display = "none";
+    document.getElementById("jsi-replenishDropdown").style.display = "none";
 
     // カスタムビューを表示
     document.getElementById("detailView").style.display = "none";

@@ -29,6 +29,9 @@ public class Admin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+	    // 売上・商品リストをSessionに入れておく
+	    adService.getDrinkList(session);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/admin.jsp");
 		rd.forward(request, response);
 	}
@@ -52,6 +55,7 @@ public class Admin extends HttpServlet {
 				newDrink.setName(request.getParameter("name"));
 				newDrink.setPrice(Integer.parseInt(request.getParameter("price")));
 				newDrink.setTemperature(DrinkTemperature.valueOf(request.getParameter("temperature")));
+				newDrink.setInventory(Integer.parseInt(request.getParameter("count")));
 				adService.replace(session, replaceId, newDrink);
 				break;
 			case "addCustom":
@@ -59,7 +63,9 @@ public class Admin extends HttpServlet {
 			    customDrink.setName(request.getParameter("name"));
 			    customDrink.setPrice(Integer.parseInt(request.getParameter("price")));
 			    customDrink.setTemperature(DrinkTemperature.valueOf(request.getParameter("temperature")));
-			    // カスタム商品を渡してカスタムドリンクrストに保存
+			    customDrink.setInventory(Integer.parseInt(request.getParameter("count")));
+			    customDrink.setImageFile(request.getParameter("imageFile"));
+			    // カスタム商品を渡してカスタムドリンクリストに保存
 			    adService.addCustomDrink(session, customDrink);
 			    int targetId = Integer.parseInt(request.getParameter("drinkId"));
 			    adService.replace(session, targetId, customDrink);

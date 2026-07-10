@@ -14,6 +14,14 @@ public class AdminService {
 	private BendingDAO dao = new BendingDAO();
 	
 	/**
+	 * 全商品取得
+	 * @param session	取得済みセッション
+	 */
+	public void getDrinkList(HttpSession session) {
+	    dao.findAll(session);
+	}
+	
+	/**
 	 * 在庫補充
 	 * @param session	取得済セッション
 	 * @param drinkId	商品ID

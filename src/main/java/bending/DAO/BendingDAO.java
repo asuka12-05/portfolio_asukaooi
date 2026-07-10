@@ -49,6 +49,7 @@ public class BendingDAO {
 		d1.setPrice(120);
 		d1.setInventory(5);
 		d1.setTemperature(DrinkTemperature.COLD);
+		d1.setImageFile("1.png");
 		// リストに格納
 		defaultList.add(d1);
 		
@@ -59,6 +60,7 @@ public class BendingDAO {
 		d2.setPrice(120);
 		d2.setInventory(5);
 		d2.setTemperature(DrinkTemperature.COLD);
+		d1.setImageFile("2.png");
 		// リストに格納
 		defaultList.add(d2);
 		
@@ -69,6 +71,7 @@ public class BendingDAO {
 		d3.setPrice(150);
 		d3.setInventory(5);
 		d3.setTemperature(DrinkTemperature.COLD);
+		d1.setImageFile("3.png");
 		// リストに格納
 		defaultList.add(d3);
 		
@@ -79,6 +82,7 @@ public class BendingDAO {
 		d4.setPrice(160);
 		d4.setInventory(5);
 		d4.setTemperature(DrinkTemperature.HOT);
+		d1.setImageFile("4.png");
 		// リストに格納
 		defaultList.add(d4);
 		
@@ -89,6 +93,7 @@ public class BendingDAO {
 		d5.setPrice(160);
 		d5.setInventory(5);
 		d5.setTemperature(DrinkTemperature.COLD);
+		d1.setImageFile("5.png");
 		// リストに格納
 		defaultList.add(d5);
 		
@@ -99,6 +104,7 @@ public class BendingDAO {
 		d6.setPrice(160);
 		d6.setInventory(5);
 		d6.setTemperature(DrinkTemperature.COLD);
+		d1.setImageFile("6.png");
 		// リストに格納
 		defaultList.add(d6);
 		
