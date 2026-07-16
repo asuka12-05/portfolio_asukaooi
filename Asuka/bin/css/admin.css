@@ -1,0 +1,240 @@
+@charset "UTF-8";
+/* ===== 業者画面専用 ===== */
+
+/* 操作ボタンエリア */
+.option-btns {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.op-btn {
+    flex: 1;
+    height: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    border-radius: 6px;
+    border: 2px solid #333;
+    background: white;
+    transition: background 0.15s;
+}
+
+.replenish-btn { border-color: #228822; color: #228822; }
+.replenish-btn:hover:not(:disabled) { background: #eeffee; }
+
+.custom-btn { border-color: #882288; color: #882288; }
+.custom-btn:hover:not(:disabled) { background: #ffeeff; }
+
+/* 補充グループ */
+.replenish-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 補充プルダウン */
+.replenish-dropdown {
+    background: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px;
+}
+
+.replenish-dropdown form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.count-select,
+.custom-select {
+    padding: 6px 8px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.85rem;
+}
+
+/* 決定ボタン（補充・カスタム共通） */
+.decide-btn {
+    padding: 6px 14px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: background 0.15s;
+}
+
+.decide-btn:hover { background: #555; }
+
+/* 売上エリア */
+.sales-area {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    background: #fff8f0;
+    border: 2px solid #cc8800;
+    border-radius: 8px;
+}
+
+.sales-total {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #884400;
+}
+
+.collect-btn {
+    padding: 8px 20px;
+    background: #cc8800;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background 0.15s;
+}
+
+.collect-btn:hover:not(:disabled) { background: #aa6600; }
+
+.machine-bottom {
+    flex: 1;
+    min-height: 40px;
+}
+
+/* 詳細ウインドウ */
+.detail-window {
+    border: 3px solid #e8c840;
+    border-radius: 8px;
+    background: #fffff0;
+    padding: 16px;
+    flex: 1;
+}
+
+/* 詳細表示 */
+#detailView {
+    display: flex;
+    gap: 16px;
+}
+
+.detail-drink-img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+.detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.detail-row {
+    font-size: 0.9rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+}
+
+/* カスタム画面 */
+#customView {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 画像スライダー */
+.img-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.slide-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    background: white;
+    font-size: 1rem;
+    transition: background 0.15s;
+}
+
+.slide-btn:hover { background: #eee; }
+
+.custom-drink-img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+}
+
+/* カスタム入力 */
+.custom-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.custom-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.custom-row label {
+    width: 60px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.custom-input {
+    flex: 1;
+    padding: 6px 8px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.85rem;
+}
+
+/* HOT/COLD切り替えボタン */
+.temp-toggle-btn {
+    padding: 6px 14px;
+    border-radius: 4px;
+    border: 2px solid #cc4422;
+    background: #ffdddd;
+    color: #cc4422;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: all 0.15s;
+}
+
+.temp-toggle-btn.cold {
+    border-color: #2244cc;
+    background: #ddddff;
+    color: #2244cc;
+}
+
+/* カスタム決定ボタン */
+.custom-decide-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    margin-top: 8px;
+}
+
+/* 商品ボタングリッド */
+.drink-btn {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}

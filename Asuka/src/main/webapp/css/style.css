@@ -1,0 +1,158 @@
+@charset "UTF-8";
+/* ===== 共通スタイル ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100%;
+    font-family: 'Noto Sans JP', 'メイリオ', sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* ===== 共通ボタン ===== */
+button {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ===== 共通レイアウト（consumer・admin共通） ===== */
+.page-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100%;
+    gap: 24px;
+    padding: 24px;
+}
+
+/* ===== 自販機エリア（左） ===== */
+.machine-area {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: #ddd;
+    border: 3px solid #333;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+/* ===== 右エリア ===== */
+.info-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ===== 商品グリッド ===== */
+.drink-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.drink-slot {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.1s, border-color 0.1s;
+    min-height: 100px;
+}
+
+.drink-slot:hover:not(.sold-out):not([disabled]) {
+    transform: scale(1.03);
+    border-color: #333;
+}
+
+/* 温度別カラー */
+.drink-slot.hot      { background-color: #f4a0a0; }
+.drink-slot.cold     { background-color: #a0c4f4; }
+.drink-slot.no-stock { background-color: #e0d080; }
+.drink-slot.sold-out { background-color: #b0b0b0; cursor: not-allowed; }
+.drink-slot.selected { border-color: #ff6600; border-width: 3px; }
+
+/* 売り切れ帯 */
+.sold-out-band {
+    position: absolute;
+    top: 50%;
+    left: -8px;
+    right: -8px;
+    transform: translateY(-50%) rotate(-15deg);
+    background: rgba(200, 0, 0, 0.75);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 4px 0;
+    letter-spacing: 0.1em;
+    z-index: 1;
+}
+
+.drink-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.drink-name {
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.drink-price,
+.drink-stock {
+    font-size: 0.65rem;
+    color: #333;
+}
+
+/* ===== メッセージウインドウ ===== */
+.msg-window {
+    border: 2px solid #6a9a6a;
+    border-radius: 8px;
+    background: #f5fff5;
+    padding: 12px 16px;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.msg-error       { color: red;   font-weight: bold; }
+.msg-normal      { color: #333; }
+.msg-placeholder { color: #aaa; font-size: 0.85rem; }
+
+/* ===== 戻るボタンエリア ===== */
+.back-area {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.back-btn {
+    padding: 10px 20px;
+    border: 2px solid #333;
+    background: white;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    transition: background 0.15s;
+}
+
+.back-btn:hover {
+    background: #eee;
+}
