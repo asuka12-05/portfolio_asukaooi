@@ -47,7 +47,7 @@ function insertCoin(amount) {
  * @param {number} inventory   - 在庫数
  * @param {string} temperature - 温度(HOT/COLD)
  */
-function selectDrink(id, name, price, inventory, temperature) {
+function selectDrink(id, name, price, inventory, temperature, imagePath) {
     selectedId = id;
 
     // hidden項目にdrinkIdをセット
@@ -58,9 +58,8 @@ function selectDrink(id, name, price, inventory, temperature) {
     document.getElementById("statusPrice").textContent     = price;
     document.getElementById("statusInventory").textContent = inventory;
     document.getElementById("statusTemp").textContent      = temperature === "HOT" ? "あったかい" : "つめたい";
-    document.getElementById("statusImg").src =
-        getContextPath() + "/images/" + id + ".png";
-
+	document.getElementById("statusImg").src = getContextPath() + "/images/" + imagePath;
+   
     // 選択状態のハイライト更新
     document.querySelectorAll(".drink-slot").forEach(function (slot) {
         slot.classList.remove("selected");

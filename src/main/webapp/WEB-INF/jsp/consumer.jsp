@@ -46,7 +46,8 @@ session.removeAttribute("gotDrink");
           <%-- 購入可能 --%>
           <c:otherwise>
             <div class="drink-slot ${drink.temperature == 'HOT' ? 'hot' : 'cold'} ${selectedId == drink.ID ? 'selected' : ''}"
-              data-price=${drink.price} onclick="selectDrink(${drink.ID}, '${drink.name}', ${drink.price}, ${drink.inventory}, '${drink.temperature}')">
+              data-price=${drink.price} onclick="selectDrink(${drink.ID}, '${drink.name}', ${drink.price}, ${drink.inventory},
+               '${drink.temperature}', '${drink.imagePath}')">
               <img src="${ctx}/images/${drink.imagePath}" alt="${drink.name}" class="drink-img">
               <span class="drink-name">${drink.name}</span>
               <span class="drink-price">¥${drink.price}</span>
@@ -74,7 +75,7 @@ session.removeAttribute("gotDrink");
       <div class="tray" id="tray">
         <c:if test="${not empty gotDrink}">
           <div class="got-drink">
-            <img src="${ctx}/images/${gotDrink.ID}.png" alt="${gotDrink.name}" class="tray-img">
+            <img src="${ctx}/images/${gotDrink.imagePath}" alt="${gotDrink.name}" class="tray-img">
             <span class="got-label">GET !</span>
           </div>
         </c:if>
@@ -102,7 +103,7 @@ session.removeAttribute("gotDrink");
     <!-- ステータスウインドウ -->
     <div class="status-window" id="statusWindow">
       <div class="status-item" id="statusDrinkImg">
-        <img src="${ctx}/images/placeholder.png" alt="" id="statusImg"
+        <img src="${ctx}/images/hatena.png" alt="hatena" id="statusImg"
           class="status-drink-img">
       </div>
       <div class="status-detail">

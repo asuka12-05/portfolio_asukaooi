@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import bending.DTO.DrinkDto;
 import bending.Service.ConsumerService;
 import bending.tool.Const;
 
@@ -43,6 +44,8 @@ public class Consumer extends HttpServlet {
 				int drinkId = Integer.parseInt(request.getParameter("drinkId"));
 				int change = conService.purchase(session, drinkId);
 				session.setAttribute("change", change);
+				DrinkDto gotDrink = conService.findById(session, drinkId);
+			    session.setAttribute("gotDrink", gotDrink);
 			// 商品を購入せず投入金額をそのまま返金
 			} else if ("return".equals(action)) {
 				int change = conService.returnChange(session);

@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="/header.jsp" %>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/start.css">
-<h1>自販機シミュレーター</h1>
-
-<%-- 消費者ボタン --%>
-<a href="${pageContext.request.contextPath}/bending/consumer">
-  <button class="button">消費者</button>
-</a>
-
-<%-- 業者ボタン --%>
-<a href="${pageContext.request.contextPath}/bending/admin">
-  <button class="button">業者</button>
-</a>
-
-<%-- 初期化ボタン --%>
-<form action="${pageContext.request.contextPath}/bending/start" method="post">
-  <button class="button" type="submit">初期化</button>
-</form>
-<%@ include file="/footer.jsp" %>
+  pageEncoding="UTF-8"%>
+<%@ include file="/header.jsp"%>
+<link rel="stylesheet" href="${ctx}/css/start.css">
+<div class="start-wrapper">
+  <div class="bg-overlay"></div>
+  <div class="start-container">
+    <div class="title-box">
+      <h1>自販機シミュレーター</h1>
+    </div>
+    <div class="btn-group">
+      <a href="${ctx}/bending/consumer">
+        <button class="start-btn consumer-btn">買 う</button>
+      </a> <a href="${ctx}/bending/admin">
+        <button class="start-btn admin-btn">売 る</button>
+      </a>
+    </div>
+  </div>
+  <form action="${ctx}/bending/start" method="post">
+    <button class="reset-btn" type="submit">&#x21BB; RESET</button>
+  </form>
+</div>

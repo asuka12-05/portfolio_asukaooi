@@ -12,6 +12,16 @@ public class ConsumerService {
 	private BendingDAO dao = new BendingDAO();
 	
 	/**
+	 * 商品をIDで検索
+	 * @param session  取得済セッション
+	 * @param drinkId  商品ID
+	 * @return         商品
+	 */
+	public DrinkDto findById(HttpSession session, int drinkId) {
+	    return dao.findById(session, drinkId);
+	}
+	
+	/**
 	 * 購入・おつり計算
 	 * @return
 	 */

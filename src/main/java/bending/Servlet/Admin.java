@@ -30,8 +30,14 @@ public class Admin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		 // 一時メッセージをクリア
+	    session.removeAttribute("errorMsg");
+	    session.removeAttribute("successMsg");
+	    session.removeAttribute("collectedSales");
+
 	    // 売上・商品リストをSessionに入れておく
 	    adService.getDrinkList(session);
+	    SalesDto sales = adService.getSales(session);
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/admin.jsp");
 		rd.forward(request, response);
 	}

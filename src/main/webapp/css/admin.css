@@ -2,7 +2,7 @@
 /* ===== 業者画面専用 ===== */
 
 /* 操作ボタンエリア */
-.op-btn-area {
+.option-btns {
     display: flex;
     gap: 12px;
     align-items: flex-start;
@@ -230,4 +230,11 @@
     font-size: 1rem;
     letter-spacing: 0.15em;
     margin-top: 8px;
+}
+
+/* 商品ボタングリッド */
+.drink-btn {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
 }

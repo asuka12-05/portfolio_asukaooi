@@ -34,22 +34,22 @@ session.removeAttribute("collectedSales");
     <div class="drink-btn" id="jsi-drink-btn">
       <c:forEach var="drink" items="${drinkList}">
         <c:choose>
-          <!-- 商品売り切れ時 -->
+          <%-- 商品売り切れ時 --%>
           <c:when test="${drink.inventory == 0}">
             <div class="drink-slot no-stock"
               onclick="selectSlot(${drink.ID}, '${drink.name}', ${drink.price}, ${drink.inventory}, '${drink.temperature}', true, '${drink.imagePath}')">
               <img src="${ctx}/images/${drink.imagePath}" alt="${drink.name}" class="drink-img">
-               <span class="drink-name">${drink.name}</span>
-               <span class="drink-stock">0本</span>
+                <span class="drink-name"><c:out value="${drink.name}" /></span>
+                <span class="drink-stock">0本</span>
             </div>
           </c:when>
-          <!-- 商品在庫あり -->
+          <%-- 商品在庫あり --%>
           <c:otherwise>
             <div
               class="drink-slot ${drink.temperature == 'HOT' ? 'hot' : 'cold'}"
               onclick="selectSlot(${drink.ID}, '${drink.name}', ${drink.price}, ${drink.inventory}, '${drink.temperature}', false, '${drink.imagePath}')">
               <img src="${ctx}/images/${drink.imagePath}" alt="${drink.name}" class="drink-img">
-               <span class="drink-name">${drink.name}</span>
+               <span class="drink-name"><c:out value="${drink.name}" /></span>
                <span class="drink-stock">${drink.inventory}本</span>
             </div>
           </c:otherwise>
@@ -67,7 +67,7 @@ session.removeAttribute("collectedSales");
             <input type="hidden" name="action" value="replenish">
             <input type="hidden" name="drinkId" id="jsi-replenishDrinkId" value="">
             <select name="count" class="count-select" id="jsi-replenishCount">
-              <option value="default" selected>本数を選択</option>
+              <option value="" selected>本数を選択</option>
               <option value="1">1本</option>
               <option value="2">2本</option>
               <option value="3">3本</option>
@@ -113,7 +113,7 @@ session.removeAttribute("collectedSales");
       <!-- 補充時：商品詳細表示 -->
       <div id="detailView">
         <div class="detail-img-area">
-          <img src="${ctx}/images/1.png"
+          <img src="${ctx}/images/hatena.png"
             alt="${drink.name}" id="detailImg" class="drink-img">
         </div>
         <div class="detail-info">
@@ -134,7 +134,7 @@ session.removeAttribute("collectedSales");
         <div class="img-slider">
           <button type="button" class="slide-btn" onclick="prevImage()">&#9664;</button>
           <img
-            src="${ctx}/images/drink1.png"
+            src="${ctx}/images/hatena.png"
             alt="ドリンク画像" id="customImg" class="custom-drink-img">
           <button type="button" class="slide-btn" onclick="nextImage()">&#9654;</button>
         </div>
@@ -178,13 +178,13 @@ session.removeAttribute("collectedSales");
     <!-- メッセージウインドウ -->
     <div class="msg-window" id="msgWindow">
       <c:choose>
-        <!-- エラーメッセージがある場合は表示 -->
+        <%-- エラーメッセージがある場合は表示 --%>
         <c:when test="${not empty errorMsg}">
-          <span class="msg-error">${errorMsg}</span>
+          <span class="msg-error"><c:out value="${errorMsg}" /></span>
         </c:when>
-        <!--  -->
+        <%-- 成功メッセージ --%>
         <c:when test="${not empty successMsg}">
-          <span class="msg-normal">${successMsg}</span>
+          <span class="msg-normal"><c:out value="${successMsg}" /></span>
         </c:when>
         <c:when test="${not empty collectedSales}">
           <span class="msg-normal">${collectedSales.totalSales}円を回収しました</span>

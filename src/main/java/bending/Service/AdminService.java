@@ -87,6 +87,15 @@ public class AdminService {
 	}
 	
 	/**
+	 * 売上取得
+	 * @param session 取得済セッション
+	 * @return 売上
+	 */
+	public SalesDto getSales(HttpSession session) {
+	    return dao.getSales(session);
+	}
+	
+	/**
 	 * 全状態初期化
 	 * @param session
 	 */
