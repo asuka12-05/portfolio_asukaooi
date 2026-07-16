@@ -7,8 +7,8 @@ FROM eclipse-temurin:21-jdk AS build
 WORKDIR /build
 
 # Javaソースとwebappリソースをコピー
-COPY src/main/java ./src
-COPY src/main/webapp ./webapp
+COPY Asuka/src/main/java ./src
+COPY Asuka/src/main/webapp ./webapp
 
 # コンパイル時のクラスパス用にTomcatのlib(jakarta.servlet等)を取得
 COPY --from=tomcat-base /usr/local/tomcat/lib ./tomcat-lib
