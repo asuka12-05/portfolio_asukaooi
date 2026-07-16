@@ -1,6 +1,6 @@
 @charset "UTF-8";
 body {
-    background-image: url('/Asuka/images/start.jpg');
+    background-image: url('/images/start.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
