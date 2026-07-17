@@ -41,8 +41,8 @@ public class ConsumerService {
 		dao.addSales(session, drink.getPrice());
 		// 投入金額からドリンクの値段を引いておつりを計算する
 		int change = insertedMoney - drink.getPrice();
-		// 投入金額リセット
-		dao.resetMoney(session);
+		// changeをそのまま次の投入金額として保持
+		session.setAttribute(Const.ATTR_AMOUNT, change);
 		
 		// おつりを返却
 		return change;

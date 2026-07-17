@@ -2,11 +2,6 @@
  * 消費者画面のJavaScript
  */
 
-// 現在の投入金額（hidden項目から取得）
-let insertedMoney = parseInt(document.getElementById("insertedMoney").value) || 0;
-// 現在選択中の商品ID
-let selectedId    = parseInt(document.getElementById("selectedId").value)    || 0;
-
 // ページ読み込み時にボタン状態を更新
 window.onload = function () {
 	updateDrinkButtons();
@@ -74,9 +69,14 @@ function selectDrink(id, name, price, inventory, temperature, imagePath) {
  */
 function updateBuyBtn() {
     const btn   = document.getElementById("buyBtn");
-    const price = parseInt(document.getElementById("statusPrice").textContent) || 0;
+	// ここで毎回最新の投入金額を取得する
+	const currentInserted = parseInt(document.getElementById("insertedMoney").value) || 0;
+	const price = parseInt(document.getElementById("statusPrice").textContent) || 0;
 
-    btn.disabled = !(selectedId > 0 && insertedMoney >= price && price > 0);
+	// selectedIdも毎回取得
+	const selectedId = parseInt(document.getElementById("buyDrinkId").value) || 0;
+
+    btn.disabled = !(selectedId > 0 && currentInserted >= price && price > 0);
 }
 
 /**
