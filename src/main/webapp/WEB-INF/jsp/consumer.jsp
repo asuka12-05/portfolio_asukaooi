@@ -119,6 +119,7 @@ session.removeAttribute("gotDrink");
           投入金額：<span id="statusInserted">${insertedMoney}</span>円
         </div>
       </div>
+      <div class="hint-window" id="hintWindow" style="color: #666; font-size: 0.9em; margin-top: 5px;"></div>
     </div>
 
     <!-- メッセージウインドウ -->
@@ -135,6 +136,7 @@ session.removeAttribute("gotDrink");
         </c:otherwise>
       </c:choose>
     </div>
+    
 
     <!-- 戻るボタン -->
     <div class="back-area">

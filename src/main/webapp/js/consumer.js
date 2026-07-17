@@ -21,6 +21,39 @@ function updateDrinkButtons() {
             slot.style.opacity = "0.5";
         }
     });
+	updateHint();
+}
+
+/**
+ * 現在の投入金額から、次の目標（次に買えるもの）を計算して表示する
+ */
+function updateHint() {
+    const inserted = parseInt(document.getElementById("insertedMoney").value) || 0;
+    const hintWindow = document.getElementById("hintWindow");
+    
+    // 全商品の価格と名前を取得（HTMLの data-price 属性から収集）
+    const drinks = [];
+    document.querySelectorAll(".drink-slot").forEach(slot => {
+        const price = parseInt(slot.getAttribute("data-price"));
+        const name = slot.querySelector(".drink-name").textContent;
+        if (!isNaN(price)) {
+            drinks.push({ name: name, price: price });
+        }
+    });
+
+    // 投入金額より高い商品だけを抽出
+    const affordable = drinks.filter(d => d.price > inserted);
+
+    if (affordable.length > 0) {
+        // 次に買える最も安い商品を探す
+        affordable.sort((a, b) => a.price - b.price);
+        const nextTarget = affordable[0];
+        const diff = nextTarget.price - inserted;
+        
+        hintWindow.textContent = `あと${diff}円で${nextTarget.name}が買えます`;
+    } else {
+        hintWindow.textContent = "すべての商品が購入可能です！";
+    }
 }
 
 /**
