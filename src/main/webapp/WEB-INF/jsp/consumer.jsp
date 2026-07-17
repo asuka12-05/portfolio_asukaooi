@@ -76,7 +76,6 @@ session.removeAttribute("gotDrink");
         <c:if test="${not empty gotDrink}">
           <div class="got-drink">
             <img src="${ctx}/images/${gotDrink.imagePath}" alt="${gotDrink.name}" class="tray-img">
-            <span class="got-label">GET !</span>
           </div>
         </c:if>
       </div>
