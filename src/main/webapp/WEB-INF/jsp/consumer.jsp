@@ -145,5 +145,8 @@ session.removeAttribute("gotDrink");
   </div>
 </div>
 
+<script>
+  const CONTEXT_PATH = "${ctx}";
+</script>
 <script src="${ctx}/js/consumer.js"></script>
 <%@ include file="/footer.jsp"%>

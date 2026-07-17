@@ -1,5 +1,4 @@
 /**
- * consumer.js
  * 消費者画面のJavaScript
  */
 
@@ -41,11 +40,11 @@ function insertCoin(amount) {
 
 /**
  * 商品選択
- * @param {number} id          - 商品ID
- * @param {string} name        - 商品名
- * @param {number} price       - 価格
- * @param {number} inventory   - 在庫数
- * @param {string} temperature - 温度(HOT/COLD)
+ * @param {number} id			商品ID
+ * @param {string} name			商品名
+ * @param {number} price		価格
+ * @param {number} inventory	在庫数
+ * @param {string} temperature	温度(HOT/COLD)
  */
 function selectDrink(id, name, price, inventory, temperature, imagePath) {
     selectedId = id;
@@ -58,7 +57,7 @@ function selectDrink(id, name, price, inventory, temperature, imagePath) {
     document.getElementById("statusPrice").textContent     = price;
     document.getElementById("statusInventory").textContent = inventory;
     document.getElementById("statusTemp").textContent      = temperature === "HOT" ? "あったかい" : "つめたい";
-	document.getElementById("statusImg").src = getContextPath() + "/images/" + imagePath;
+	document.getElementById("statusImg").src = CONTEXT_PATH + "/images/" + imagePath;
    
     // 選択状態のハイライト更新
     document.querySelectorAll(".drink-slot").forEach(function (slot) {
@@ -82,19 +81,12 @@ function updateBuyBtn() {
 
 /**
  * メッセージを表示
- * @param {string}  msg     - メッセージ
- * @param {boolean} isError - trueのとき赤字
+ * @param {string} msg			メッセージ
+ * @param {boolean} isError		trueのとき赤字
  */
 function showMsg(msg, isError) {
     const win = document.getElementById("msgWindow");
     win.innerHTML = isError
         ? '<span class="msg-error">'  + msg + '</span>'
         : '<span class="msg-normal">' + msg + '</span>';
-}
-
-/**
- * コンテキストパスを取得
- */
-function getContextPath() {
-    return window.location.pathname.split("/").slice(0, 2).join("/");
 }
