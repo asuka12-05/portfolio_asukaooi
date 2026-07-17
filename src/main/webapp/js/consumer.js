@@ -30,6 +30,7 @@ function updateDrinkButtons() {
 function updateHint() {
     const inserted = parseInt(document.getElementById("insertedMoney").value) || 0;
     const hintWindow = document.getElementById("hintWindow");
+	hintWindow.className = "hint-row";
     
     // 全商品の価格と名前を取得
     const drinks = [];
@@ -53,7 +54,6 @@ function updateHint() {
 		affordable.sort((a, b) => a.price - b.price);
 		const nextTarget = affordable[0];
 		const diff = nextTarget.price - inserted;
-		// strongタグで数字を強調
 		hintWindow.innerHTML = `あと<strong>${diff}円</strong>で<br>${nextTarget.name}が買えます`;
 	}
 }
