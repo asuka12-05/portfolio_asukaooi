@@ -31,12 +31,13 @@ function updateHint() {
     const inserted = parseInt(document.getElementById("insertedMoney").value) || 0;
     const hintWindow = document.getElementById("hintWindow");
     
-    // 全商品の価格と名前を取得（HTMLの data-price 属性から収集）
+    // 全商品の価格と名前を取得
     const drinks = [];
     document.querySelectorAll(".drink-slot").forEach(slot => {
         const price = parseInt(slot.getAttribute("data-price"));
         const name = slot.querySelector(".drink-name").textContent;
-        if (!isNaN(price)) {
+		const isSoldOut = slot.classList.contains("sold-out");
+        if (!isNaN(price) && !isSoldOut) {
             drinks.push({ name: name, price: price });
         }
     });
@@ -44,16 +45,17 @@ function updateHint() {
     // 投入金額より高い商品だけを抽出
     const affordable = drinks.filter(d => d.price > inserted);
 
-    if (affordable.length > 0) {
-        // 次に買える最も安い商品を探す
-        affordable.sort((a, b) => a.price - b.price);
-        const nextTarget = affordable[0];
-        const diff = nextTarget.price - inserted;
-        
-        hintWindow.textContent = `あと${diff}円で${nextTarget.name}が買えます`;
-    } else {
-        hintWindow.textContent = "すべての商品が購入可能です！";
-    }
+	if (drinks.length === 0) {
+		hintWindow.textContent = "売り切れです";
+	} else if (affordable.length === 0) {
+		hintWindow.textContent = "全商品購入可能です！";
+	} else {
+		affordable.sort((a, b) => a.price - b.price);
+		const nextTarget = affordable[0];
+		const diff = nextTarget.price - inserted;
+		// strongタグで数字を強調
+		hintWindow.innerHTML = `あと<strong>${diff}円</strong>で<br>${nextTarget.name}が買えます`;
+	}
 }
 
 /**
