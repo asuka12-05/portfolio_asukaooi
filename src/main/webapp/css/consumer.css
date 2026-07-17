@@ -8,7 +8,7 @@
     flex-wrap: wrap;
     justify-content: center;
 }
-
+/* コインボタン */
 .coin-btn {
     width: 60px;
     height: 60px;
@@ -20,9 +20,13 @@
     font-size: 0.75rem;
     transition: transform 0.1s;
 }
-
-.coin-btn:hover  { transform: scale(1.08); }
-.coin-btn:active { transform: scale(0.95); }
+/* コインボタンマウスオーバー時 */
+.coin-btn:hover  {
+	transform: scale(1.08); 
+}
+.coin-btn:active { 
+	transform: scale(0.95); 
+}
 
 /* アクションエリア */
 .action-area {
@@ -42,6 +46,18 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+	position: relative;
+}
+/* 取り出し口GET画像周り */
+.tray::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('../images/get.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    border-radius: 6px;
 }
 
 .got-drink {
@@ -50,9 +66,17 @@
     align-items: center;
     gap: 4px;
 }
-
-.tray-img  { width: 60px; height: 60px; object-fit: contain; }
-.got-label { font-weight: bold; font-size: 1rem; color: #e06000; }
+/* 取り出し口の商品画像 */
+.tray-img  {
+    width: 60px;
+    height: 60px; 
+	object-fit: contain;
+}
+.got-label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #e06000;
+}
 
 /* 買う・おつりボタン */
 .buy-return-area {
@@ -72,10 +96,22 @@
     transition: background 0.15s;
 }
 
-.buy-btn    { background: #ffdddd; border-color: #cc2200; color: #cc2200; }
-.buy-btn:hover:not(:disabled)    { background: #ffbbbb; }
-.return-btn { background: #ddddff; border-color: #2244cc; color: #2244cc; }
-.return-btn:hover { background: #bbbbff; }
+.buy-btn    {
+	background: #ffdddd; 
+	border-color: #cc2200; 
+	color: #cc2200; 
+}
+.buy-btn:hover:not(:disabled) { 
+	background: #ffbbbb;
+}
+.return-btn { 
+	background: #ddddff; 
+	border-color: #2244cc; 
+	color: #2244cc; 
+}
+.return-btn:hover { 
+	background: #bbbbff; 
+}
 
 /* ステータスウインドウ */
 .status-window {
