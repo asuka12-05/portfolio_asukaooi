@@ -120,6 +120,7 @@
     display: flex;
     gap: 16px;
     flex: 1;
+	position: relative;
 }
 
 .status-drink-img {
@@ -150,13 +151,16 @@
 }
 
 .hint-row {
-	position: relative;
-	z-index: 1;
-	margin-top: 10px;
-	padding-top: 10px;
-	border-top: 1px solid #ccc;
-	font-size: 0.9em;
-	color: #555;
+	position: absolute;
+	bottom: 12px;
+	right: 12px;
+	width: 160px;
+	padding: 8px 12px;
+	border: 2px solid #a0e0a0;
+	border-radius: 6px;
+	background: #f0fff0;
+	font-size: 0.85em;
+	color: #336633;
 	text-align: center;
 	font-weight: bold;
 }
