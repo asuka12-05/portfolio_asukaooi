@@ -11,12 +11,12 @@ COPY . .
 COPY --from=tomcat-base /usr/local/tomcat/lib ./tomcat-lib
 
 # コンパイル済みクラスの出力先を作成
-RUN mkdir -p webapp/WEB-INF/classes
+RUN mkdir -p src/main/webapp/WEB-INF/classes
 
 # Tomcatのlibのみをクラスパスに指定してコンパイル（libフォルダエラー回避版）
 RUN javac -encoding UTF-8 \
     -cp "$(find tomcat-lib -name '*.jar' | tr '\n' ':')" \
-    -d webapp/WEB-INF/classes \
+    -d src/main/webapp/WEB-INF/classes \
     $(find src -name '*.java')
 
 # ==========================================
@@ -28,7 +28,7 @@ FROM tomcat:10.1-jdk21-temurin
 RUN rm -rf /usr/local/tomcat/webapps/ROOT
 
 # コンパイル済みclassesを含むwebappをROOTとして配置
-COPY --from=build /build/webapp /usr/local/tomcat/webapps/ROOT
+COPY --from=build /build/src/main/webapp /usr/local/tomcat/webapps/ROOT
 
 EXPOSE 8080
 
