@@ -4,6 +4,7 @@ package bending.DTO;
  * 売り上げDTO
  */
 public class SalesDto {
+	
 	/** 売上合計 */
 	private int totalSales;
 	/** 販売本数 */

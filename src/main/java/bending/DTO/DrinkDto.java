@@ -1,9 +1,10 @@
 package bending.DTO;
 
 /**
- * ドリンク：エンティティ
+ * ドリンクDTO
  */
 public class DrinkDto {
+	
 	/** ID */
 	private int ID;
 	/** ドリンクの名前 */
@@ -17,6 +18,10 @@ public class DrinkDto {
 	/** ドリンクの画像 */
 	private String imageFile;
 	
+	/**
+	 * 画像の取得
+	 * @return	ファイル名
+	 */
 	public String getImagePath() {
 	    if (imageFile != null && !imageFile.isEmpty()) {
 	        return imageFile;

@@ -24,6 +24,7 @@
 .coin-btn:hover  {
 	transform: scale(1.08); 
 }
+/* ちょっと動く */
 .coin-btn:active { 
 	transform: scale(0.95); 
 }
@@ -93,20 +94,23 @@
     border: 2px solid #333;
     transition: background 0.15s;
 }
-
-.buy-btn    {
+/* 買うボタン */
+.buy-btn {
 	background: #ffdddd; 
 	border-color: #cc2200; 
 	color: #cc2200; 
 }
+/* 活性化していてマウスオーバーした買うボタン */
 .buy-btn:hover:not(:disabled) { 
 	background: #ffbbbb;
 }
+/* 戻るボタン */
 .return-btn { 
 	background: #ddddff; 
 	border-color: #2244cc; 
 	color: #2244cc; 
 }
+/* マウスオーバーした買うボタン */
 .return-btn:hover { 
 	background: #bbbbff; 
 }
@@ -122,7 +126,7 @@
     flex: 1;
 	position: relative;
 }
-
+/* 詳細用のドリンク画像 */
 .status-drink-img {
     width: 100px;
     height: 100px;
@@ -149,7 +153,7 @@
     border-bottom: none;
     margin-top: 8px;
 }
-
+/* 次の商品教えウィンドウ */
 .hint-row {
 	position: absolute;
 	bottom: 12px;

@@ -16,7 +16,9 @@
       </a>
     </div>
   </div>
-  <form action="${ctx}/bending/start" method="post">
-    <button class="reset-btn" type="submit">&#x21BB; RESET</button>
+  <form action="${ctx}/bending/start" method="post" id="resetForm">
+    <button class="reset-btn" type="button" onclick="confirmReset()">&#x21BB; RESET</button>
   </form>
 </div>
+<script src="${ctx}/js/start.js"></script>
+<%@ include file="/footer.jsp"%>

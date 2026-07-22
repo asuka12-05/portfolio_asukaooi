@@ -289,10 +289,13 @@ public class BendingDAO {
 	 * @param price		今回購入したドリンクの金額
 	 */
 	public void addSales(HttpSession session, int price) {
+		// セッションから売り上げを取得
 		SalesDto sales = getSales(session);
 		
+		// 今回買った商品の金額を合計金額に加算
 		sales.setTotalSales(price + sales.getTotalSales());
 		
+		// セッションに保存
 		session.setAttribute(Const.ATTR_SALES, sales);
 	}
 	
@@ -334,12 +337,13 @@ public class BendingDAO {
 	
 	/**
 	 * 投入金額を加算
-	 * @param session
-	 * @param amount
+	 * @param session	取得済セッション
+	 * @param amount	追加した投入金額
 	 */
 	public void addMoney(HttpSession session, int amount) {
+		// 現在の投入金額をセッションから取得
 		int current = getInsertedMoney(session);
-		
+		// 投入金額
 		int newAmount = current + amount;
 		
 		session.setAttribute(Const.ATTR_AMOUNT, newAmount);

@@ -1,10 +1,10 @@
-# ==========================================
-# ビルドステージ: ソースをコンパイル
-# ==========================================
+# ----ビルド: ソースをコンパイル----
 FROM tomcat:10.1-jdk21-temurin AS tomcat-base
 
 FROM eclipse-temurin:21-jdk AS build
+# 作業ディレクトリをbuildに設定
 WORKDIR /build
+# リポジトリの全ファイルをコピー
 COPY . .
 
 # コンパイル時のクラスパス用にTomcatのlib(jakarta.servlet等)を取得
@@ -19,9 +19,7 @@ RUN javac -encoding UTF-8 \
     -d src/main/webapp/WEB-INF/classes \
     $(find src -name '*.java')
 
-# ==========================================
-# 実行ステージ: Tomcatにデプロイ
-# ==========================================
+# ----実行: Tomcatにデプロイ----
 FROM tomcat:10.1-jdk21-temurin
 
 # デフォルトのROOTアプリを削除してからデプロイ
