@@ -38,6 +38,8 @@ public class Admin extends HttpServlet {
 	    // 売上・商品リストをSessionに入れておく
 	    adService.getDrinkList(session);
 	    SalesDto sales = adService.getSales(session);
+	    request.setAttribute("sales", sales);
+	    
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/admin.jsp");
 		rd.forward(request, response);
 	}
