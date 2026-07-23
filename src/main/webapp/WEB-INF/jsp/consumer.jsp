@@ -139,7 +139,7 @@ session.removeAttribute("gotDrink");
 
     <!-- 戻るボタン -->
     <div class="back-area">
-      <a href="${ctx}/bending/start">
+      <a href="${ctx}/bending/start" onclick="return confirmBack()">
         <button class="back-btn">&#x2190; もどる</button>
       </a>
     </div>

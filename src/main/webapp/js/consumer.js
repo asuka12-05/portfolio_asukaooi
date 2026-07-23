@@ -125,3 +125,14 @@ function showMsg(msg, isError) {
         ? '<span class="msg-error">'  + msg + '</span>'
         : '<span class="msg-normal">' + msg + '</span>';
 }
+
+/**
+ * おつり確認アラート
+ */
+function confirmBack() {
+    const inserted = parseInt(document.getElementById("insertedMoney").value) || 0;
+    if (inserted > 0) {
+        return confirm("投入金額が残っています。おつりを受け取らずに戻りますか？");
+    }
+    return true;
+}
