@@ -125,7 +125,7 @@ session.removeAttribute("gotDrink");
     <div class="msg-window" id="msgWindow">
       <c:choose>
         <c:when test="${not empty errorMsg}">
-          <span class="msg-error">${errorMsg}</span>
+          <span class="msg-error"><c:out value="${errorMsg}"/></span>
         </c:when>
         <c:when test="${not empty change}">
           <span class="msg-normal">お釣り：${change}円</span>

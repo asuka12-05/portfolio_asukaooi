@@ -148,10 +148,16 @@
 
 .inserted-row {
     font-weight: bold;
-    font-size: 1rem;
+	font-size: 1.3rem;
     color: #cc6600;
     border-bottom: none;
-    margin-top: 8px;
+    margin-top: 12px;
+	padding: 10px;
+	background-color: #fff3cd;
+	border: 2px solid #ff9900;
+	border-radius: 6px;
+	text-align: center;
+	letter-spacing: 0.05em;
 }
 /* 次の商品教えウィンドウ */
 .hint-row {

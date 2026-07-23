@@ -42,8 +42,7 @@ public class Consumer extends HttpServlet {
 			// 商品を購入しおつりを返金
 			if ("buy".equals(action)) {
 				int drinkId = Integer.parseInt(request.getParameter("drinkId"));
-				int change = conService.purchase(session, drinkId);
-				session.setAttribute("change", change);
+				conService.purchase(session, drinkId);
 				DrinkDto gotDrink = conService.findById(session, drinkId);
 			    session.setAttribute("gotDrink", gotDrink);
 			// 商品を購入せず投入金額をそのまま返金
